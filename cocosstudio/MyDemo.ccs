@@ -1,0 +1,28 @@
+<Solution>
+  <PropertyGroup Name="MyDemo" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="GamePlay">
+          <Image Name="playBG.png" />
+          <Project Name="GamePlay.csd" Type="Scene" />
+          <Image Name="control_press_1.png" />
+          <Image Name="control_press_2.png" />
+          <Image Name="control_press_3.png" />
+          <Image Name="control_press_4.png" />
+          <Image Name="control1.png" />
+          <Image Name="control2.png" />
+          <Image Name="control3.png" />
+          <Image Name="control4.png" />
+        </Folder>
+        <Folder Name="MainMenu">
+          <Image Name="playBG.png" />
+          <Project Name="MainMenu.csd" Type="Scene" />
+          <Image Name="beginBtn.png" />
+          <Image Name="beginBtn_press.png" />
+          <Image Name="logo.png" />
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
