@@ -33,6 +33,7 @@ private:
 	bool isLand;
 	Player* player;
 	StarManager* starManager;
+	ui::Text* scoreText;
 };
 
 #endif

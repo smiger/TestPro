@@ -38,7 +38,7 @@ bool GPMainLayer::init()
 
 	// 加载[星球]
 	loadStar();
-		// 加载[player]
+	// 加载[player]
 	loadPlayer();
 
 	this->schedule(schedule_selector(GPMainLayer::update), 0.01f, kRepeatForever, 0);
@@ -47,7 +47,7 @@ bool GPMainLayer::init()
 void GPMainLayer::loadScene()
 {
 	m_res=CSLoader::createNode("GamePlay/GamePlay.csb");
-	addChild(m_res);
+	addChild(m_res, 1);
 }
 void GPMainLayer::loadButton()
 {
@@ -55,17 +55,22 @@ void GPMainLayer::loadButton()
 	control_1->addTouchEventListener(CC_CALLBACK_2(GPMainLayer::touchEvent, this));
 	ui::Button* control_2 = dynamic_cast<ui::Button*>(m_res->getChildByName("Button_2"));
 	control_2->addTouchEventListener(CC_CALLBACK_2(GPMainLayer::touchEvent, this));
+
+	Sprite* sprite = dynamic_cast<Sprite*>(m_res->getChildByName("Sprite_1"));
+	scoreText = dynamic_cast<ui::Text*>(sprite->getChildByName("Text_Score"));
+	//sprite->setPositionZ(10);
 }
 void GPMainLayer::loadPlayer()
 {
 	player = Player::create();
-	this->addChild(player);
-	player->setAction(starManager->getBeginStarPos());
+	this->addChild(player, 2);
+	player->setAction(starManager->getCurStarPos());
 }
 void GPMainLayer::loadStar()
 {
 	starManager = StarManager::create();
-	this->addChild(starManager);
+	this->addChild(starManager, 2);
+	starManager->setGlobalZOrder(5);
 	log("%f",starManager->getBeginStarPos().y);
 	//log("%f",starManager->getCurStarPos().y);
 }
@@ -107,22 +112,30 @@ void GPMainLayer::touchEvent(Ref *pSender, ui::Widget::TouchEventType type)
 void GPMainLayer::update(float dt)
 {
 	if(!isLand)
+	{
 		if(starManager->isCircleCollision(player->getSprite()->getPosition(),player->getSprite()->getContentSize().width/2))
 		{
-			log("aaa");
+			//log("aaa");
 			player->isCollision(starManager->getCurStar()->getSprite());
 			isLand = true;
 
-			starManager->setNextStar();
-			log("%f",starManager->getBeginStarPos().y);
-			log("%f",starManager->getCurStarPos().y);
+			starManager->setNextStar(player->getSprite()->getPosition());
+			//log("%f",starManager->getBeginStarPos().y);
+			//log("%f",starManager->getCurStarPos().y);
+
 		}
+	}
+
+	//更新分数
+	char score[10] = {0};
+	sprintf(score, "%ld", starManager->getScore());
+	scoreText->setString(score);
 }
 void GPMainLayer::launch()
 {
 	if(isLand)
 	{
-		player->jump(starManager->getBeginStar()->getSprite(), starManager->getBeginStarPos());
+		player->jump(starManager->getCurStar()->getSprite(), starManager->getCurStarPos());
 		isLand = false;
 	}
 }
