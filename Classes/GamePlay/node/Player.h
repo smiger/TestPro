@@ -14,8 +14,8 @@ public:
 	void setAction(Vec2 pos);
 	void isCollision(Sprite* star);
 	void jump(Sprite* star, Vec2 starPos);
-
+	bool isOutofBounds();
 private:
 	Sprite* player;
-
+	Size size;
 };

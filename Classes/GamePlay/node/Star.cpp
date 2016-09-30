@@ -30,7 +30,7 @@ void Star::setStarFrame(int num)
 void Star::setSprite(Sprite *sprite){
 	star = sprite;
 	this->removeAllChildren();
-	this->addChild(star, 1);
+	addChild(star, 2);
 }
 
 Sprite* Star::getSprite()

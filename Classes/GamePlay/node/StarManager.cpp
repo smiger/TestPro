@@ -32,7 +32,7 @@ void StarManager::createStar()
 		//log("%d",rand());
 		star->setStarFrame(num);
 		star->setAction(2.0f);
-		this->addChild(star, 2);
+		addChild(star, 2);
 		//log("%f",star->getSprite()->getContentSize().width);
 		int ran = size.width - 2 * star->getSprite()->getContentSize().width;
 		float posX = rand() % ran + star->getSprite()->getContentSize().width;
@@ -132,7 +132,7 @@ void StarManager::spanStar()
 		num = rand()%5;
 		star->setStarFrame(num);
 		star->setAction(2.0f);
-		this->addChild(star, 2);
+		addChild(star, 2);
 		int ran = size.width - 2 * star->getSprite()->getContentSize().width;
 		float posX = rand() % ran + star->getSprite()->getContentSize().width;
 		star->setPosition(posX, starDistance + starList.back()->getPosition().y);

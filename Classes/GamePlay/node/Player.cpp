@@ -4,6 +4,7 @@ bool Player::init()
 {
 	if(!Node::init())
 		return false;
+	size = Director::getInstance()->getWinSize();
 
 	player= Sprite::create("GamePlay/player.png");
 	player->setPosition(Vec2(100,100));
@@ -29,6 +30,9 @@ void Player::jump(Sprite* star, Vec2 starPos)
 {
 	log("==%f,%f",starPos.x,starPos.y);
 	Vec2 playerPos = star->convertToWorldSpace(player->getPosition());
+	log("1==%f,%f",playerPos.x,playerPos.y);
+	Vec2 playerPos2 = star->convertToWorldSpace(playerPos);
+	log("2==%f,%f",playerPos2.x,playerPos2.y);
 	
 	Vec2 jumpPos = playerPos - starPos;
 	float rotateRadians = jumpPos.getAngle();
@@ -49,4 +53,10 @@ void Player::jump(Sprite* star, Vec2 starPos)
 Sprite* Player::getSprite()
 {
 	return player;
+}
+bool Player::isOutofBounds()
+{
+	if(player->getPosition().x < 0 || player->getPosition().x > size.width || player->getPosition().y < 0 || player->getPosition().y > size.height)
+		return true;
+	return false;
 }

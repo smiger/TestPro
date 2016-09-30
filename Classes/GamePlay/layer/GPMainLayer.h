@@ -27,13 +27,20 @@ public:
 	bool isCircleCollision(Point pos1, float radius1, Point pos2, float radius2);
 	virtual void update(float dt);
 	void launch();
+	void restart();
+	void exit();
+
+	virtual bool onTouchBegan(Touch * touch, Event *unused_event);
+	virtual void onTouchMoved(Touch *touch, Event* unused_event){};
+	virtual void onTouchEnded(Touch *touch, Event *unused_event){};
+	virtual void onTouchCancelled(Touch *touch, Event *unused_event){};
 private:
 	Size size;
 	Node* m_res;
 	bool isLand;
 	Player* player;
 	StarManager* starManager;
-	ui::Text* scoreText;
+	Label* scoreText;
 };
 
 #endif

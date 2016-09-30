@@ -14,6 +14,8 @@
           <Image Name="control4.png" />
           <Project Name="GamePlay.csd" Type="Scene" />
           <Image Name="playBG.png" />
+          <Image Name="num.png" />
+          <Project Name="Layer.csd" Type="Layer" />
         </Folder>
         <Folder Name="MainMenu">
           <Image Name="beginBtn.png" />
